@@ -1,10 +1,10 @@
 package fr.stb.stats;
 
 import com.couchbase.client.java.Bucket;
-import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.N1qlQueryResult;
 import com.couchbase.client.java.query.N1qlQueryRow;
+import fr.stb.stats.model.PlayerName;
 
 import java.util.*;
 

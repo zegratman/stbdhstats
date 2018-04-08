@@ -1,4 +1,4 @@
-package fr.stb.stats;
+package fr.stb.stats.model;
 
 public enum BaseballStat {
     PA,

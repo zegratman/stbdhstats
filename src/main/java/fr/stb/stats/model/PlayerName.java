@@ -1,4 +1,4 @@
-package fr.stb.stats;
+package fr.stb.stats.model;
 
 public class PlayerName {
 
@@ -15,16 +15,8 @@ public class PlayerName {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     @Override
@@ -49,5 +41,9 @@ public class PlayerName {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    public String asString() {
+        return firstName + " " + lastName;
     }
 }

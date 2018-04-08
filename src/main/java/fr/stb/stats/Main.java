@@ -1,9 +1,21 @@
 package fr.stb.stats;
 
+import fr.stb.stats.export.CsvFileExporter;
+import fr.stb.stats.export.FileExporter;
+import fr.stb.stats.model.BaseballStat;
+import fr.stb.stats.model.PlayerStat;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Main {
+
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getCanonicalName());
 
     public static void main(String[] args) {
 
@@ -11,19 +23,28 @@ public class Main {
 
         PlayerSeeker playerSeeker = new PlayerSeeker(connector.getBucket("stb-dh-2018"));
 
-        Map<PlayerName, Map<BaseballStat, Integer>> allStats = new HashMap<>();
+        List<PlayerStat> playerStats = new ArrayList<>();
 
         playerSeeker.getPlayerNames().forEach(playerName -> {
-            System.out.println(playerName.toString());
-            allStats.put(playerName, new HashMap<>());
+            LOGGER.info(playerName.toString());
+            Map<BaseballStat, Integer> allStats = new HashMap<>();
             PlayerStatConnector playerStatConnector = new PlayerStatConnector(playerName, connector.getBucket("stb-dh-2018"));
             for (BaseballStat baseballStat : BaseballStat.values()) {
                 Integer stat = playerStatConnector.getPlayerStat(baseballStat);
-                allStats.get(playerName).put(baseballStat, stat);
+                allStats.put(baseballStat, stat);
             }
+            playerStats.add(new PlayerStat(playerName, allStats));
         });
 
-        System.out.println(allStats);
+        try {
+            FileExporter fileExporter = new CsvFileExporter(File.createTempFile("test-", ".csv"));
+            fileExporter.export(playerStats);
+            fileExporter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        LOGGER.info(playerStats.toString());
 
         connector.close();
 

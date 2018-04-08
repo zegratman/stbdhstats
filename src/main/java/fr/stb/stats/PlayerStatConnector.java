@@ -1,13 +1,18 @@
 package fr.stb.stats;
 
 import com.couchbase.client.java.Bucket;
-import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.N1qlQueryResult;
 import com.couchbase.client.java.query.N1qlQueryRow;
+import fr.stb.stats.model.BaseballStat;
+import fr.stb.stats.model.PlayerName;
+
+import java.util.logging.Logger;
 
 public class PlayerStatConnector {
+
+    private static final Logger LOGGER = Logger.getLogger(PlayerStatConnector.class.getCanonicalName());
 
     private static final String STATEMENT =
             "SELECT SUM(STAT[0]) AS STAT_VALUE \n" +
@@ -44,12 +49,12 @@ public class PlayerStatConnector {
 
         if (result.rows().hasNext()) {
             N1qlQueryRow n1qlQueryRow = result.rows().next();
-            System.out.println(n1qlQueryRow);
+            LOGGER.fine(n1qlQueryRow.toString());
             JsonObject jsonObject = n1qlQueryRow.value();
             if (jsonObject.containsKey("STAT_VALUE") && jsonObject.get("STAT_VALUE") != null) {
                 out = jsonObject.getInt("STAT_VALUE");
             }
-            System.out.println(out);
+            LOGGER.fine(String.valueOf(out));
         }
         return out;
     }
