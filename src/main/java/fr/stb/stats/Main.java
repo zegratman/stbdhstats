@@ -2,8 +2,13 @@ package fr.stb.stats;
 
 import fr.stb.stats.export.CsvFileExporter;
 import fr.stb.stats.export.FileExporter;
+import fr.stb.stats.impl.CouchbaseConnector;
+import fr.stb.stats.impl.PlayerCouchbaseExtractor;
+import fr.stb.stats.impl.PlayerStatCouchbaseExtractor;
 import fr.stb.stats.model.BaseballStat;
+import fr.stb.stats.model.PlayerExtractor;
 import fr.stb.stats.model.PlayerStat;
+import fr.stb.stats.model.PlayerStatExtractor;
 import fr.stb.stats.module.BattingAverageModule;
 import fr.stb.stats.module.OnBasePercentageModule;
 

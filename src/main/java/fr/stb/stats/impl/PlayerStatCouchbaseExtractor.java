@@ -1,4 +1,4 @@
-package fr.stb.stats;
+package fr.stb.stats.impl;
 
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.document.json.JsonObject;
@@ -7,6 +7,7 @@ import com.couchbase.client.java.query.N1qlQueryResult;
 import com.couchbase.client.java.query.N1qlQueryRow;
 import fr.stb.stats.model.BaseballStat;
 import fr.stb.stats.model.PlayerName;
+import fr.stb.stats.model.PlayerStatExtractor;
 
 import java.util.logging.Logger;
 

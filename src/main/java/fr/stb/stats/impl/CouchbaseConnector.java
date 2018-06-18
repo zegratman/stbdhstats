@@ -1,4 +1,4 @@
-package fr.stb.stats;
+package fr.stb.stats.impl;
 
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
