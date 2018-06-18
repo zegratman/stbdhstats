@@ -8,17 +8,18 @@ import fr.stb.stats.model.PlayerName;
 
 import java.util.*;
 
-public class PlayerSeeker {
+public class PlayerCouchbaseExtractor implements PlayerExtractor {
 
     List<PlayerName> playerNames;
 
     Bucket bucket;
 
-    public PlayerSeeker(Bucket bucket) {
+    public PlayerCouchbaseExtractor(Bucket bucket) {
         this.bucket = bucket;
     }
 
-    List<PlayerName> getPlayerNames() {
+    @Override
+    public List<PlayerName> getPlayerNames() {
         if (playerNames == null) {
             playerNames = new ArrayList<>();
             N1qlQueryResult result = bucket.query(N1qlQuery.simple(

@@ -10,9 +10,9 @@ import fr.stb.stats.model.PlayerName;
 
 import java.util.logging.Logger;
 
-public class PlayerStatConnector {
+public class PlayerStatCouchbaseExtractor implements PlayerStatExtractor {
 
-    private static final Logger LOGGER = Logger.getLogger(PlayerStatConnector.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(PlayerStatCouchbaseExtractor.class.getCanonicalName());
 
     private static final String STATEMENT =
             "SELECT SUM(STAT[0]) AS STAT_VALUE \n" +
@@ -30,16 +30,18 @@ public class PlayerStatConnector {
 
     private Bucket bucket;
 
-    public PlayerStatConnector(PlayerName playerName, Bucket bucket) {
+    public PlayerStatCouchbaseExtractor(PlayerName playerName, Bucket bucket) {
         this.playerName = playerName;
         this.bucket = bucket;
     }
 
-    PlayerName getPlayerName() {
+    @Override
+    public PlayerName getPlayerName() {
         return playerName;
     }
 
-    Integer getPlayerStat(BaseballStat stat) {
+    @Override
+    public Integer getPlayerStat(BaseballStat stat) {
         int out = 0;
         String statement = STATEMENT.replaceFirst("%stat%", stat.name().toLowerCase());
         statement = statement.replaceFirst("%fn%", playerName.getFirstName());

@@ -23,16 +23,16 @@ public class Main {
 
         CouchbaseConnector connector = new CouchbaseConnector("localhost", "statuser", "statuser");
 
-        PlayerSeeker playerSeeker = new PlayerSeeker(connector.getBucket("stb-dh-2018"));
+        PlayerExtractor playerExtractor = new PlayerCouchbaseExtractor(connector.getBucket("stb-dh-2018"));
 
         List<PlayerStat> playerStats = new ArrayList<>();
 
         File outFile = new File("stb-dh-2018.csv");
 
-        playerSeeker.getPlayerNames().forEach(playerName -> {
+        playerExtractor.getPlayerNames().forEach(playerName -> {
             LOGGER.info(playerName.toString());
             Map<BaseballStat, Integer> allStats = new HashMap<>();
-            PlayerStatConnector playerStatConnector = new PlayerStatConnector(playerName, connector.getBucket("stb-dh-2018"));
+            PlayerStatExtractor playerStatConnector = new PlayerStatCouchbaseExtractor(playerName, connector.getBucket("stb-dh-2018"));
             for (BaseballStat baseballStat : BaseballStat.values()) {
                 Integer stat = playerStatConnector.getPlayerStat(baseballStat);
                 allStats.put(baseballStat, stat);
