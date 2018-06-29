@@ -15,8 +15,8 @@ public class BattingAverageModule implements StatModule<Float> {
 
     @Override
     public Float getStat(Map<BaseballStat, Integer> initStats) {
-        Integer ab = initStats.get(BaseballStat.AB);
-        Integer h = initStats.get(BaseballStat.H);
+        Integer ab = ModuleUtils.safeStat(initStats.get(BaseballStat.AB));
+        Integer h = ModuleUtils.safeStat(initStats.get(BaseballStat.H));
         if (ab == 0) return Float.NaN;
         return h.floatValue() / ab.floatValue();
     }

@@ -2,6 +2,7 @@ package fr.stb.stats.export;
 
 import fr.stb.stats.model.BaseballStat;
 import fr.stb.stats.model.PlayerStat;
+import fr.stb.stats.module.ModuleUtils;
 import fr.stb.stats.module.StatModule;
 
 import java.io.File;
@@ -48,7 +49,9 @@ public class CsvFileExporter implements FileExporter {
             if (!headerDone) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("PLAYER");
-                keys.forEach(key -> {stringBuilder.append(","+key.name());});
+                keys.forEach(key -> {
+                    stringBuilder.append("," + key.name());
+                });
                 this.modules.forEach(statModule -> stringBuilder.append("," + statModule.getStatId()));
                 stringBuilder.append("\n");
                 try {
@@ -62,7 +65,7 @@ public class CsvFileExporter implements FileExporter {
             // writing player stats
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(playerStat.getPlayerName().asString());
-            keys.forEach(baseballStat -> stringBuilder.append("," + String.valueOf(playerStat.getInitStats().get(baseballStat))));
+            keys.forEach(baseballStat -> stringBuilder.append("," + String.valueOf(ModuleUtils.safeStat(playerStat.getInitStats().get(baseballStat)))));
             this.modules.forEach(statModule -> stringBuilder.append("," + statModule.getStat(playerStat.getInitStats())));
             stringBuilder.append("\n");
             try {

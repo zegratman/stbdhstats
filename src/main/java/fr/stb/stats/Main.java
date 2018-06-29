@@ -2,9 +2,7 @@ package fr.stb.stats;
 
 import fr.stb.stats.export.CsvFileExporter;
 import fr.stb.stats.export.FileExporter;
-import fr.stb.stats.impl.CouchbaseConnector;
-import fr.stb.stats.impl.PlayerCouchbaseExtractor;
-import fr.stb.stats.impl.PlayerStatCouchbaseExtractor;
+import fr.stb.stats.impl.*;
 import fr.stb.stats.model.BaseballStat;
 import fr.stb.stats.model.PlayerExtractor;
 import fr.stb.stats.model.PlayerStat;
@@ -26,9 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CouchbaseConnector connector = new CouchbaseConnector("localhost", "statuser", "statuser");
-
-        PlayerExtractor playerExtractor = new PlayerCouchbaseExtractor(connector.getBucket("stb-dh-2018"));
+        PlayerExtractor playerExtractor = new PlayerDirectExtractor("src/main/resources");
 
         List<PlayerStat> playerStats = new ArrayList<>();
 
@@ -37,7 +33,7 @@ public class Main {
         playerExtractor.getPlayerNames().forEach(playerName -> {
             LOGGER.info(playerName.toString());
             Map<BaseballStat, Integer> allStats = new HashMap<>();
-            PlayerStatExtractor playerStatConnector = new PlayerStatCouchbaseExtractor(playerName, connector.getBucket("stb-dh-2018"));
+            PlayerStatExtractor playerStatConnector = new PlayerStatDirectExtractor(playerName, new File("src/main/resources"));
             for (BaseballStat baseballStat : BaseballStat.values()) {
                 Integer stat = playerStatConnector.getPlayerStat(baseballStat);
                 allStats.put(baseballStat, stat);
@@ -56,8 +52,6 @@ public class Main {
         }
 
         LOGGER.info(playerStats.toString());
-
-        connector.close();
 
     }
 

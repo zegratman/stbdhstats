@@ -15,11 +15,11 @@ public class OnBasePercentageModule implements StatModule<Float> {
 
     @Override
     public Float getStat(Map<BaseballStat, Integer> initStats) {
-        Integer h = initStats.get(BaseballStat.H);
-        Integer bb = initStats.get(BaseballStat.BB);
-        Integer hp = initStats.get(BaseballStat.HP);
-        Integer ab = initStats.get(BaseballStat.AB);
-        Integer sf = initStats.get(BaseballStat.SF);
+        Integer h = ModuleUtils.safeStat(initStats.get(BaseballStat.H));
+        Integer bb = ModuleUtils.safeStat(initStats.get(BaseballStat.BB));
+        Integer hp = ModuleUtils.safeStat(initStats.get(BaseballStat.HP));
+        Integer ab = ModuleUtils.safeStat(initStats.get(BaseballStat.AB));
+        Integer sf = ModuleUtils.safeStat(initStats.get(BaseballStat.SF));
 
         Integer num = h + bb + hp;
         Integer div = ab + bb + hp + sf;
@@ -28,4 +28,5 @@ public class OnBasePercentageModule implements StatModule<Float> {
 
         return num.floatValue() / div.floatValue();
     }
+
 }
