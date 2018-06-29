@@ -1,0 +1,115 @@
+{
+  "type": "stat",
+  "players": [
+    {
+      "first-name": "Nael",
+      "last-name": "Palaric",
+      "pa": 4,
+      "ab": 4,
+      "r": 1,
+      "h": 2,
+      "bb": 0,
+      "sb": 0,
+      "k": 0,
+      "rbi": 2,
+      "po": 0,
+      "a" : 0,
+      "e": 0
+    },
+    {
+      "first-name": "Loic",
+      "last-name": "Vallar",
+      "pa": 4,
+      "ab": 2,
+      "r": 1,
+      "h": 0,
+      "bb": 2,
+      "po": 1,
+      "a": 1,
+      "e": 1
+    },
+    {
+      "first-name": "Mickael",
+      "last-name": "Valck",
+      "pa": 4,
+      "ab": 4,
+      "h": 1,
+      "r": 2,
+      "sb": 0,
+      "rbi": 0,
+      "po": 9,
+      "e": 0
+    },
+    {
+      "first-name": "Alexandre",
+      "last-name": "Freulon",
+      "pa": 4,
+      "ab": 4,
+      "r": 1,
+      "h": 1,
+      "k": 2,
+      "po": 1,
+      "a": 4,
+      "e": 1
+    },
+    {
+      "first-name": "Nicolas",
+      "last-name": "Chaloub",
+      "pa": 4,
+      "ab": 3,
+      "r": 2,
+      "h": 0,
+      "bb": 1,
+      "cs": 1,
+      "k": 0,
+      "po": 1,
+      "a": 1
+    },
+    {
+      "first-name": "Jeremy",
+      "last-name": "Garrett",
+      "pa": 4,
+      "ab": 2,
+      "r": 1,
+      "h": 0,
+      "bb": 2,
+      "cs": 1,
+      "rbi": 1,
+      "po": 1,
+      "a": 3
+    },
+    {
+      "first-name": "Julien",
+      "last-name": "Merlhe",
+      "pa": 4,
+      "ab": 4,
+      "r": 0,
+      "h": 2,
+      "bb": 0,
+      "sb": 0,
+      "k": 1,
+      "rbi": 2,
+      "po": 3,
+      "a": 1,
+      "e": 1
+    },
+    {
+      "first-name": "Sylvain",
+      "last-name": "Violon",
+      "pa": 4,
+      "ab": 4,
+      "k": 3,
+      "po": 1,
+      "rbi": 1
+    },
+    {
+      "first-name": "David",
+      "last-name": "Elegoet",
+      "pa": 4,
+      "ab": 2,
+      "r": 1,
+      "h": 0,
+      "bb": 2
+    }
+  ]
+}
